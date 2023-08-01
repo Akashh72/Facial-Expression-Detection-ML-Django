@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emotion Recognition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            background-color: #fff;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%; /* Set the maximum width to fit within the page */
+            height: auto;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            text-align: center;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Emotion Recognition</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="custom_image">Select an image to upload:</label>
+            <input type="file" name="custom_image" id="custom_image" accept="image/*" />
+            <input type="submit" value="Upload and Recognize Emotion" />
+        </form>
+
+        {% if faces_detected %}
+            <h2>Detected Faces with Predicted Class Labels</h2>
+            <img src="data:image/jpeg;base64,{{ detected_image }}" alt="Detected Faces with Predicted Class Labels">
+        {% else %}
+            <p>No faces detected in the uploaded image.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
