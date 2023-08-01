@@ -1,0 +1,4 @@
+django
+mtcnn
+tensorflow
+numpy
